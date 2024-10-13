@@ -1,4 +1,6 @@
 import { RedirectRecord } from '../Popup'
+import { IconButton } from './icon-button'
+import EditIcon from './icons/EditIcon'
 import DeleteIcon from './icons/DeleteIcon'
 import EditIcon from './icons/EditIcon'
 import ToggleOffIcon from './icons/ToggleOffIcon'
@@ -39,31 +41,23 @@ export const RecordItem = ({ record, onEdit, onDelete, onToggle, className }: Re
             >
               {record.keepSubpath ? 'Keep' : 'Discard'}
             </span>
-            <button
-              onClick={() => onEdit(record)}
-              className="p-2 rounded-full hover:bg-gray-100 text-blue-500"
-              title="Edit"
-            >
-              <EditIcon className="h-5 w-5" />
-            </button>
-            <button
-              onClick={() => onDelete(record.id)}
-              className="p-2 rounded-full hover:bg-gray-100 text-red-500"
-              title="Delete"
-            >
+            <IconButton onClick={() => onEdit(record)} title="Edit" className="text-blue-500">
+              <EditIcon className={`h-5 w-5 ${isEditing ? 'opacity-50' : ''}`} />
+            </IconButton>
+            <IconButton onClick={() => onDelete(record.id)} title="Delete" className="text-red-500">
               <DeleteIcon className="h-5 w-5" />
-            </button>
-            <button
+            </IconButton>
+            <IconButton
               onClick={() => onToggle(record.id)}
-              className={`p-2 rounded-full hover:bg-gray-100 ${record.enabled ? 'text-green-500' : 'text-gray-500'}`}
               title={record.enabled ? 'Disable' : 'Enable'}
+              className={record.enabled ? 'text-green-500' : 'text-gray-500'}
             >
               {record.enabled ? (
                 <ToggleOnIcon className="h-5 w-5" />
               ) : (
                 <ToggleOffIcon className="h-5 w-5" />
               )}
-            </button>
+            </IconButton>
           </div>
         </div>
       </div>
