@@ -20,16 +20,22 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "fmt": "prettier --write '**/*.{tsx,ts,json,css,scss,md}'",
-    "zip": "npm run build && node src/zip.js"
+    "prezip": "pnpm i",
+    "zip": "pnpm build && node src/zip.js",
+    "release": "auto shipit"
   },
   "dependencies": {
     "preact": "^10.24.2"
   },
   "devDependencies": {
+    "@auto-it/core": "^11.2.1",
+    "@auto-it/git-tag": "^11.2.1",
+    "@auto-it/upload-assets": "^11.2.1",
     "@crxjs/vite-plugin": "^2.0.0-beta.19",
     "@preact/preset-vite": "^2.9.1",
     "@types/chrome": "^0.0.277",
     "@vitejs/plugin-react": "^4.1.0",
+    "auto": "^11.2.1",
     "autoprefixer": "^10.4.20",
     "gulp": "^4.0.2",
     "gulp-zip": "^6.0.0",

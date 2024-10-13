@@ -1,12 +1,17 @@
 import { defineManifest } from '@crxjs/vite-plugin'
 import packageData from '../package.json'
+import { execSync } from 'child_process'
 
+const version = execSync('git describe $(git rev-list --tags --max-count=1)')
+  .toString()
+  .trim()
+  .replace('v', '')
 const isDev = process.env.NODE_ENV == 'development'
 
 export default defineManifest({
   name: `${packageData.displayName || packageData.name}${isDev ? ` ➡️ Dev` : ''}`,
   description: packageData.description,
-  version: packageData.version,
+  version: version || packageData.version,
   manifest_version: 3,
   action: {
     default_popup: 'popup.html',

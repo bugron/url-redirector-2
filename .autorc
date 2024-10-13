@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "git-tag",
+    [
+      "upload-assets",
+      [
+        "./package/*.zip"
+      ]
+    ],
+    "./build-plugin.cjs"
+  ],
+  "owner": "bugron",
+  "repo": "url-redirector-2",
+  "name": "Arsen Melikyan",
+  "email": "bugron@mail.ru"
+}
