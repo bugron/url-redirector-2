@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'preact/hooks'
 import { get } from '../utils/storage'
 
 const DEFAULT_EXTENSION_ENABLED = true

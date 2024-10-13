@@ -1,5 +1,6 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
+import { useState, useEffect } from 'preact/hooks'
 import { RedirectRecord } from '../Popup'
+import { FormEvent, ChangeEvent } from 'preact/compat'
 
 interface RecordFormProps {
   onSubmit: (record: Omit<RedirectRecord, 'id' | 'enabled'>) => void
@@ -70,7 +71,9 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
           <input
             type="text"
             value={origin}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setOrigin(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setOrigin((e.target as HTMLInputElement).value)
+            }
             placeholder="Origin URL"
             className={`w-full p-2 border rounded h-10 bg-gray-50 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.origin ? 'border-red-500' : ''}`}
             required
@@ -83,7 +86,9 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
           <input
             type="text"
             value={destination}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setDestination(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setDestination((e.target as HTMLInputElement).value)
+            }
             placeholder="Destination URL"
             className={`w-full p-2 border rounded h-10 bg-gray-50 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.destination ? 'border-red-500' : ''}`}
             required
@@ -96,7 +101,9 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
           <input
             type="checkbox"
             checked={keepSubpath}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setKeepSubpath(e.target.checked)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setKeepSubpath((e.target as HTMLInputElement).checked)
+            }
             className="form-checkbox mr-2 h-5 w-5 text-blue-500 rounded bg-gray-50 border-gray-300"
           />
           <span>Keep Subpath</span>

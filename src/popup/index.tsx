@@ -1,10 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { render } from 'preact'
 import { Popup } from './Popup'
 import './index.css'
 
-createRoot(document.getElementById('app') as HTMLElement).render(
-  <StrictMode>
-    <Popup />
-  </StrictMode>,
-)
+render(<Popup />, document.getElementById('app') as HTMLElement)

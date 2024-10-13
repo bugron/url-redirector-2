@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import { SVGProps } from 'preact/compat'
 
 const ToggleOffIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg

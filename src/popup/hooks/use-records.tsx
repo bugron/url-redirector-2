@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'preact/hooks'
 import { RedirectRecord } from '../Popup'
 import { get, set } from '../utils/storage'
 

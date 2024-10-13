@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import { SVGProps } from 'preact/compat'
 
 const EditIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
