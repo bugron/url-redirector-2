@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'preact/hooks'
 import { RedirectRecord } from '../Popup'
 import { FormEvent, ChangeEvent } from 'preact/compat'
+import { isValidUrl } from '../utils/validate-url'
 
 interface RecordFormProps {
   onSubmit: (record: Omit<RedirectRecord, 'id' | 'enabled'>) => void
@@ -28,23 +29,14 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
     }
   }, [initialData])
 
-  const validateUrl = (url: string): boolean => {
-    try {
-      new URL(url)
-      return true
-    } catch {
-      return false
-    }
-  }
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newErrors: { origin?: string; destination?: string; general?: string } = {}
 
-    if (!validateUrl(origin)) {
+    if (!isValidUrl(origin)) {
       newErrors.origin = 'Please enter a valid URL'
     }
-    if (!validateUrl(destination)) {
+    if (!isValidUrl(destination)) {
       newErrors.destination = 'Please enter a valid URL'
     }
     if (origin === destination) {
