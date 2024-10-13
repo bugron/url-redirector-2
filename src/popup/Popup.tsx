@@ -1,7 +1,5 @@
 import { useState } from 'preact/hooks'
 
-import './Popup.css'
-
 import { RecordForm } from './components/record-form'
 import { RecordItem } from './components/record-item'
 import { saveRule, removeRule, removeAllRules } from './utils/declarative-net-request'
