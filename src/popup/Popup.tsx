@@ -56,6 +56,10 @@ export const Popup = () => {
     setRecords((prevRecords) => prevRecords.filter((r) => r.id !== id))
 
     await removeRule(id)
+
+    if (editingRecord?.id === id) {
+      setEditingRecord(null)
+    }
   }
 
   const toggleRecord = async (id: RedirectRecord['id']) => {
