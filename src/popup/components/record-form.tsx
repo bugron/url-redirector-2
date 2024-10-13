@@ -45,8 +45,11 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
 
     setErrors(newErrors)
 
+    const processedOrigin = origin.trim()
+    const processedDestination = destination.trim()
+
     if (Object.keys(newErrors).length === 0) {
-      onSubmit({ origin, destination, keepSubpath })
+      onSubmit({ origin: processedOrigin, destination: processedDestination, keepSubpath })
 
       if (!initialData) {
         setOrigin('')
