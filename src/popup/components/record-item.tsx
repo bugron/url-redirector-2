@@ -2,7 +2,6 @@ import { RedirectRecord } from '../Popup'
 import { IconButton } from './icon-button'
 import EditIcon from './icons/EditIcon'
 import DeleteIcon from './icons/DeleteIcon'
-import EditIcon from './icons/EditIcon'
 import ToggleOffIcon from './icons/ToggleOffIcon'
 import ToggleOnIcon from './icons/ToggleOnIcon'
 
@@ -12,9 +11,19 @@ interface RecordItemProps {
   onDelete: (id: number) => void
   onToggle: (id: number) => void
   className?: string
+  editingRecordId?: number
 }
 
-export const RecordItem = ({ record, onEdit, onDelete, onToggle, className }: RecordItemProps) => {
+export const RecordItem = ({
+  record,
+  onEdit,
+  onDelete,
+  onToggle,
+  className,
+  editingRecordId,
+}: RecordItemProps) => {
+  const isEditing = editingRecordId === record.id
+
   return (
     <div
       className={`bg-white p-4 rounded shadow border-l-4 ${record.enabled ? 'border-green-500' : 'border-grey-500'} ${className}`}
@@ -41,7 +50,12 @@ export const RecordItem = ({ record, onEdit, onDelete, onToggle, className }: Re
             >
               {record.keepSubpath ? 'Keep' : 'Discard'}
             </span>
-            <IconButton onClick={() => onEdit(record)} title="Edit" className="text-blue-500">
+            <IconButton
+              onClick={() => onEdit(record)}
+              disabled={isEditing}
+              title="Edit"
+              className="text-blue-500"
+            >
               <EditIcon className={`h-5 w-5 ${isEditing ? 'opacity-50' : ''}`} />
             </IconButton>
             <IconButton onClick={() => onDelete(record.id)} title="Delete" className="text-red-500">

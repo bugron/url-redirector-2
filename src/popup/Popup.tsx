@@ -133,6 +133,7 @@ export const Popup = () => {
                 onDelete={deleteRecord}
                 onToggle={toggleRecord}
                 className={index === records.length - 1 ? '' : 'mb-4'}
+                editingRecordId={editingRecord?.id}
               />
             ))}
           </div>
