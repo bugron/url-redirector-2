@@ -107,8 +107,8 @@ export const Popup = () => {
   }
 
   return (
-    <main className="bg-gray-100 p-4 w-[790px]">
-      <div className="flex justify-between items-center mb-4">
+    <main className="bg-gray-100 p-4 w-[790px] flex flex-col gap-y-4">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800">URL Redirector 2</h1>
         <div className="flex items-center">
           <ExtensionToggle
@@ -117,28 +117,25 @@ export const Popup = () => {
           />
         </div>
       </div>
-      <div className="mx-auto">
-        <RecordForm
-          onSubmit={editingRecord ? updateRecord : addRecord}
-          initialData={editingRecord}
-          onCancel={editingRecord ? () => setEditingRecord(null) : undefined}
-        />
-        {records.length > 0 ? (
-          <div className="mt-4">
-            {records.map((record, index) => (
-              <RecordItem
-                key={record.id}
-                record={record}
-                onEdit={setEditingRecord}
-                onDelete={deleteRecord}
-                onToggle={toggleRecord}
-                className={index === records.length - 1 ? '' : 'mb-4'}
-                editingRecordId={editingRecord?.id}
-              />
-            ))}
-          </div>
-        ) : null}
-      </div>
+      <RecordForm
+        onSubmit={editingRecord ? updateRecord : addRecord}
+        initialData={editingRecord}
+        onCancel={editingRecord ? () => setEditingRecord(null) : undefined}
+      />
+      {records.length > 0 ? (
+        <div className="flex flex-col gap-y-2">
+          {records.map((record) => (
+            <RecordItem
+              key={record.id}
+              record={record}
+              onEdit={setEditingRecord}
+              onDelete={deleteRecord}
+              onToggle={toggleRecord}
+              editingRecordId={editingRecord?.id}
+            />
+          ))}
+        </div>
+      ) : null}
     </main>
   )
 }

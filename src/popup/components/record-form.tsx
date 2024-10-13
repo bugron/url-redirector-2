@@ -65,8 +65,8 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
   }
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow w-full">
-      <form onSubmit={handleSubmit} className="flex items-start space-x-2 w-full">
+    <div className="bg-white p-2 rounded-lg shadow w-full">
+      <form onSubmit={handleSubmit} className="flex items-start gap-x-2 w-full">
         <div className="flex flex-col flex-grow">
           <input
             type="text"

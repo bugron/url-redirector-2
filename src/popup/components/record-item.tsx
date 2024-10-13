@@ -19,19 +19,19 @@ export const RecordItem = ({
   onEdit,
   onDelete,
   onToggle,
-  className,
+  className = '',
   editingRecordId,
 }: RecordItemProps) => {
   const isEditing = editingRecordId === record.id
 
   return (
     <div
-      className={`bg-white p-4 rounded shadow border-l-4 ${record.enabled ? 'border-green-500' : 'border-grey-500'} ${className}`}
+      className={`bg-white p-2 rounded shadow border-l-4 ${record.enabled ? 'border-green-500' : 'border-grey-500'} ${className}`}
     >
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col gap-y-2">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
           <div className="flex-grow overflow-hidden">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-y-2 sm:gap-y-0 sm:gap-x-2">
               <p
                 className="font-semibold text-gray-800 break-all max-w-[250px]"
                 title={record.origin}
