@@ -2,6 +2,7 @@ import { useState, useEffect } from 'preact/hooks'
 import { RedirectRecord } from '../Popup'
 import { FormEvent, ChangeEvent } from 'preact/compat'
 import { isValidUrl } from '../utils/validate-url'
+import { hasInfiniteLoop } from '../utils/redirect-utils'
 
 interface RecordFormProps {
   onSubmit: (record: Omit<RedirectRecord, 'id' | 'enabled'>) => void
@@ -26,6 +27,7 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
       setOrigin('')
       setDestination('')
       setKeepSubpath(false)
+      setErrors({})
     }
   }, [initialData])
 
@@ -41,6 +43,9 @@ export const RecordForm = ({ onSubmit, initialData, onCancel }: RecordFormProps)
     }
     if (origin === destination) {
       newErrors.general = 'Origin and destination URLs cannot be the same'
+    } else if (hasInfiniteLoop(origin, destination, keepSubpath)) {
+      newErrors.general =
+        'This configuration (destination includes origin and keep subpath is enabled) may lead to infinite redirects. Please modify your input.'
     }
 
     setErrors(newErrors)
